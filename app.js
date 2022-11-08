@@ -1,0 +1,1 @@
+document.title = 'Hi Hello From JS';
