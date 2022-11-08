@@ -1,1 +1,3 @@
-document.title = 'Hi Hello From JS';
+const hiHello = document.querySelector(".hiHello h1");
+
+hiHello.innerText = "Hi Hello!";
