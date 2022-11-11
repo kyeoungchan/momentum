@@ -12,14 +12,8 @@ console.dir(h2);
 const H1 = {
     // h1에 들어있는 객체들을 다루기 위한 객체
     handleClick : function(h1, i) {
-        const clickedClassName = "active";
-        if (h1[i].className == clickedClassName) {
-            h1[i].className = "";
-            // CSS 내의 'actvie' class에 해당되지 않게 된다.
-        } else {
-            h1[i].className = clickedClassName;
-            // CSS 내의 'actvie' class에 해당되게 된다.
-        }
+        h1[i].classList.toggle("active");
+        // "active"라는 class가 존재하면 제거하고, 존재하지 않으면 추가한다.
     },
     handleMouseEnter : function(h1, i) {
         h1[i].innerText = "mouse on text! " + (i + 1);
@@ -34,14 +28,8 @@ const H1 = {
 const H2 = {
     // h2를 다루기 위한 객체
     handleClick : function() {
-        const clickedClassName = "active";
-        if (h2.className == clickedClassName) {
-            h2.className = "";
-            // CSS 내의 'actvie' class에 해당되지 않게 된다.
-        } else {
-            h2.className = clickedClassName;
-            // CSS 내의 'actvie' class에 해당되게 된다.
-        }
+        h2.classList.toggle("active");
+        // "active"라는 class가 존재하면 제거하고, 존재하지 않으면 추가한다.
     },
     handleMouseEnter : function() {
         h2.innerText = "mouse on text!";
