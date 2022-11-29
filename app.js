@@ -7,13 +7,14 @@ const HIDDEN_CLASSNAME = "hidden";
 
 function onLoginSubmit(event) {
     const userName = loginInput.value;
+    localStorage.setItem("username", userName);
+    // 입력 받은 username을 Local Storage에 저장한다.
 
     event.preventDefault();
     // Browser가 event 발생할 때마다 기본적으로 하는 행위를 막아준다.
     console.log(userName);
     loginForm.classList.add(HIDDEN_CLASSNAME);
     // loginForm에 hidden ClassName을 추가해준다.
-    // greeting.innerText = "Hi Hello " + userName;
     greeting.innerText = `Hi Hello ${userName}`;
     greeting.classList.remove(HIDDEN_CLASSNAME);
 }
