@@ -10,16 +10,14 @@ const USERNAME_KEY = "username";
 function onLoginSubmit(event) {
     event.preventDefault();
     // Browser가 event 발생할 때마다 기본적으로 하는 행위를 막아준다.
-    const username = loginInput.value;
-    localStorage.setItem(USERNAME_KEY, username);
+    localStorage.setItem(USERNAME_KEY, loginInput.value);
     // 입력 받은 username을 Local Storage에 저장한다.
-    console.log(username);
     loginForm.classList.add(HIDDEN_CLASSNAME);
     // loginForm에 hidden ClassName을 추가해준다.
-    paintGreetings(username);
+    paintGreetings();
 }
 
-function paintGreetings(username) {
+function paintGreetings() {
     greeting.classList.remove(HIDDEN_CLASSNAME);
     greeting.innerText = `Hi Hello ${username}`;
 }
@@ -33,5 +31,5 @@ if (savedUsername == null) {
     // submit Event는 Enter를 누르거나 Button을 클릭할 때 발생한다.
 } else {
     // show the greetings
-    paintGreetings(savedUsername);
+    paintGreetings();
 }
