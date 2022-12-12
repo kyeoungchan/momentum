@@ -6,7 +6,7 @@ const toDoList = document.querySelector("#todo-list");
 const TODOS_KEY = "todos";
 // String 형이 2번 이상 나오면 변수로 저장해서 활용해두는 것이 좋다.
 
-const toDos = [];
+let toDos = [];
 
 function saveToDos() {
     localStorage.setItem(TODOS_KEY, JSON.stringify(toDos));
@@ -49,8 +49,11 @@ toDoForm.addEventListener("submit", handleToDoSubmit);
 const savedToDos = localStorage.getItem(TODOS_KEY);
 
 console.log(savedToDos);
-if(saveToDos) {
+if(savedToDos) {
     // To Do 목록이 비어있지 않다면
     const parsedToDos = JSON.parse(savedToDos);
-    console.log(parsedToDos);
+    toDos = parsedToDos;
+    // 이미 저장된 List를 toDos에 넣어준다.
+    parsedToDos.forEach(paintToDo);
+    // 해당 배열의 원소들마다 각각 인자로 전달한 함수를 시켜준다.
 }
