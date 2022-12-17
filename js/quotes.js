@@ -38,6 +38,10 @@ const quotes = [
     {
         quote : "A book is a version of the world. If you do not like it, ignore it; or offer your own version in return.",
         author : "Salman Rushdie"
+    },
+    {
+        quote : "Only a life lived for others is a life worthwhile.",
+        author : "Albert Einstein"
     }
 ];
 

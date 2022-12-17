@@ -38,7 +38,11 @@ function handleToDoSubmit(event) {
     // submit event를 실행시켰을 때 자동 새로고침을 방지해준다.
     const newTodo = todoInput.value;
     todoInput.value = "";
-    toDos.push(newTodo);
+    const newTodoObj = {
+        text : newTodo,
+        id : Date.now()
+    };
+    toDos.push(newTodoObj);
     // To Do List를 Paint하기 전에 배열에 먼저 저장을 한다.
     paintToDo(newTodo);
     saveToDos();
@@ -48,7 +52,6 @@ toDoForm.addEventListener("submit", handleToDoSubmit);
 
 const savedToDos = localStorage.getItem(TODOS_KEY);
 
-console.log(savedToDos);
 if(savedToDos) {
     // To Do 목록이 비어있지 않다면
     const parsedToDos = JSON.parse(savedToDos);
