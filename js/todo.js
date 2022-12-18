@@ -9,20 +9,39 @@ const TODOS_KEY = "todos";
 let toDos = [];
 
 function saveToDos() {
-    localStorage.setItem(TODOS_KEY, JSON.stringify(toDos));
+    if(toDos.length) {
+        // toDos라는 Array에 원소가 존재한다면
+        localStorage.setItem(TODOS_KEY, JSON.stringify(toDos));
+    }
+    else {
+        // toDos라는 Array에 원소가 아예 존재하지 않는다면
+        // 해당 배열의 Key값 자체를 아예 Local Storage에서 삭제한다.
+        localStorage.removeItem(TODOS_KEY);
+    }
 }
 
 function deleteToDo(event) {
     const li = event.target.parentElement;
     // target은 HTML Element로 접근하는 것으로 보면 된다.
+    toDos = toDos.filter(toDo => toDo.id != li.id);
+    // toDo라는 배열 내에 있는 원소들 중 li.id와 id 값이 다른 것들을 모두 toDo라는 배열 DB로 재저장한다.
+
+    // toDos.splice(toDos.findIndex(function(item) {return item.id == li.id}), 1);
+    // // 해당 li.id와 같은 id를 갖고 있는 원소의 index를 찾은 후 Array.splice() 함수를 통해 삭제한다.
+    
     li.remove();
+    // 배열 내에 먼저 해당 원소를 삭제한 후 화면 상의 리스트도 삭제한다.
+    saveToDos();
+    //삭제된 버전의 배열을 다시 Local Storage에 지정한다.
 }
 
-function paintToDo(newTodo) {
+
+function paintToDo(newTodoObj) {
     // 입력받은 ToDo들을 Painting해주는 함수다.
     const li = document.createElement("li");
+    li.id = newTodoObj.id;
     const span = document.createElement("span");
-    span.innerText = newTodo;
+    span.innerText = newTodoObj.text;
     const button = document.createElement("button");
     button.innerText = "X";
     button.addEventListener("click", deleteToDo);
@@ -44,7 +63,7 @@ function handleToDoSubmit(event) {
     };
     toDos.push(newTodoObj);
     // To Do List를 Paint하기 전에 배열에 먼저 저장을 한다.
-    paintToDo(newTodo);
+    paintToDo(newTodoObj);
     saveToDos();
 }
 
